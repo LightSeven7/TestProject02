@@ -1,3 +1,5 @@
+'use strict'
+
 function showSum(obj) {
     var num1 = 1;
     var num2 = 2;
@@ -165,14 +167,20 @@ async function funcA() {
 
 // 残余引数・スプレッド演算子
 const TestCCC = () => {
+
     // const ary = [1, 2, 3, 4, 5];
     // a,bは固定でセット、残りはargsに配列で格納される
-    const a = (a, b, ...args) => {
+    // !残余引数としての使用法(値のシーケンスを配列に変換)
+    const a = (a = 0, b = 0, ...args) => {
         console.log(`a:${a}`);
         console.log(`b:${b}`);
         for (const v of args) console.log(`v:${v}`);
     };
     a(1, 2, 3, 4, 5, 6, 7);
+
+    // !スプレッド演算子としての使用法(配列を値のシーケンスに変換)
+    let b = [1, 7, 2, 9];
+    console.log(Math.max(...b));
 }
 
 // 分割代入
@@ -276,6 +284,8 @@ const TestOutputLog = () => {
 
 // 無名関数(関数リテラル)
 const TestFFF = () => {
+
+    // !mapの中で実行しているのが無名関数
     let results = [0, 1, 2, 3, 4].map(function (x) { return 100 * x});
     for (const vv of results) console.log(`Value:${vv}`);
 }
