@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WEB TEST</title>
+
+    <link rel="stylesheet" href="./main.css" type="text/css" media="all" />
+
+    <script type="text/javascript" src="./main.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./jQueryAssets/jquery-3.4.1.js"></script>
+
+    <style>
+/*
+        .size12 {  font-size: 12pt}
+        .size10 {  font-size: 10pt}
+*/
+    </style>
+    </head>
+<body>
+    <div class="title" style="line-height: 55px;">
+        <b>ー表示・動作テストー</b><font color="red" size="3px">※IEのブラウザでも確認する</font>
+    </div>
+    <button onclick="showSum(this)">Sum</button>
+    <button onclick="dispLineThrough();">取り消し線</button>
+    <div class="css-fukidashi">
+        <p class="text">ここをマウスオーバーすると</p>
+        <p class="fukidashi">吹き出しが表示されます</p>
+    </div>
+    <span id="st11" style="text-decoration: line-through; text-decoration-color: red;">取り消し線テスト</span>
+    <br>
+    <br>
+    <input type="button" value="ダウンロードAAA" />
+    <input type="button" value="ダウンロードBBB" /><br/><br/>
+    <select name="blood">
+        <option value="A">A型</option>
+        <option value="B">B型</option>
+        <option value="O">O型</option>
+        <option value="AB">AB型</option>
+    </select><br/>
+    <label><input type="checkbox" value="0" />チェック１</label>
+    <input type="checkbox" value="1" />チェック２
+    <br/>
+    <label><input type="radio" name="rdotest1" value="0" />ラジオ１</label>
+    <input type="radio" name="rdotest1" value="0" />ラジオ１<br/>
+    <input type="button" value="Call To Func1" onclick="alert('aaa');" />
+    <input type="button" value="Call To Func2" onclick="TestCCC();" /><br/>
+    <input type="button" value="Call To Func3" onclick="TestMap();" />
+    <input type="button" value="Call To Func4" onclick="TestFFF();" />
+    <hr>
+    <span>おおおおおかかかかかかかかかかかかかかかかかかかかかかかTokyo２０２０かかかかOLYMPICかかかかかかかかかかかかかかかかかかかかかかかかかかEND</span><br/>
+    <p>STARTおおおおおかかかかかかかかかかかかかかかかかかかかかかかTokyo２０２０かかかかOLYMPICかかかかかかかかかかかかかかかかかかかかかかかかかかEND</p>
+    <hr>
+    <span class="strike">テーブルの中にテーブルを横に並べる</span><br/>
+    <table border="1" style="border: 1px solid yellow;" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>aaaaaaaaaaa</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>bbbbbbbbbbbb</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <form>
+        <center>
+            <font color="Blue" size="+2">入力エラー</font>
+            <br/>
+            <hr>
+            <br/>
+            <font color="Red">
+                <font size="+0.5">
+                    リストに以下のエラーが存在します。<br/>
+                    必要な情報を入力するか、もしくは対象から削除して、<br/>
+                    再度アップロードしてください。
+                </font><br/><br/>
+                <table border="1" cellspacing="0" cellpadding="0" style="border: 1px solid red; border-style: solid; background-color: #fffbb3;">
+                    <tbody>
+                        <tr>
+                            <td style="padding: 5px; border: 1px solid red; text-align: center; width: 65px; font-weight: bold;">
+                                1行目
+                            </td>
+                            <td style="border: 1px solid red; width: 350px; padding-left: 5px;">
+                                指定されたフォーマットと異なります。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fst">2行目</td>
+                            <td class="sed">郵便番号に正しくないデータが含まれています。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">2行目</td>
+                            <td class="sed">役職に正しくないデータが含まれています。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">3行目</td>
+                            <td class="sed">会社名、郵便番号、住所のいずれかが入力されていません。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">3行目</td>
+                            <td class="sed">役職に正しくないデータが含まれています。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">4行目</td>
+                            <td class="sed">会社名、郵便番号、住所のいずれかが入力されていません。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">18行目</td>
+                            <td class="sed">会社名、郵便番号、住所のいずれかが入力されていません。</td>
+                        </tr>
+                        <tr>
+                            <td class="fst">1025行目</td>
+                            <td class="sed">役職に正しくないデータが含まれています。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </font>
+            <br/>
+            <input type="button" value="戻る" onclick="javascript:history.back();"><br/><br/>
+        </center>
+    </form>
+</body>
+</html>
