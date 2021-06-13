@@ -278,4 +278,5 @@ const TestOutputLog = () => {
 const TestFFF = () => {
     let results = [0, 1, 2, 3, 4].map(function (x) { return 100 * x});
     for (const vv of results) console.log(`Value:${vv}`);
+    return;
 }
