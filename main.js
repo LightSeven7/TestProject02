@@ -280,8 +280,9 @@ const TestFFF = () => {
     for (const vv of results) console.log(`Value:${vv}`);
 }
 
-// 高階関数
+/* 高階関数群と使い方 */
 const TestGGG = () => {
     const objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
 }
+
