@@ -293,3 +293,5 @@ const TestGGG = () => {
     const objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
 }
+
+// test
