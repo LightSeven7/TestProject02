@@ -283,7 +283,6 @@ const TestOutputLog = () => {
 
 // 無名関数(関数リテラル)
 const TestFFF = () => {
-
     // !mapの中で実行しているのが無名関数
     let results = [0, 1, 2, 3, 4].map(function (x) { return 100 * x});
     for (const vv of results) console.log(`Value:${vv}`);
