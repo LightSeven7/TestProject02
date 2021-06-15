@@ -273,7 +273,6 @@ const TestObjectCopy = () => {
 
 // オブジェクトの中身をログ等へ出力する方法
 const TestOutputLog = () => {
-
     const aaa = {
         id: 1,
         address: "aaa@yahoo.co.jp",
