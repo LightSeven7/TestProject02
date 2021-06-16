@@ -266,7 +266,6 @@ const TestObjectCopy = () => {
 
     // パターン２
     const destObj2 = {...srcObj};
-
     console.log(`destObj2.id:${destObj2.id}`);
     console.log(`destObj2.name:${destObj2.name}`);
 }
@@ -293,5 +292,3 @@ const TestGGG = () => {
     const objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
 }
-
-// test
