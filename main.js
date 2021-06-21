@@ -188,18 +188,18 @@ const TestDDD = () => {
 
     // 分割代入方法１
     let a, b, c, d, rest;
-    ({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+    ({a, b, ...rest} = {a: 10, b: 20, x: 30, z: 40});
 
     console.log(`a:${a}`);
     console.log(`b:${b}`);
-    console.log("rest:" + rest.c); // {c: 30, d: 40}
-    console.log("rest:" + rest.d); // {c: 30, d: 40}
+    console.log("rest:" + rest.x); // {x: 30}
+    console.log("rest:" + rest.z); // {z: 40}
 
     // 分割代入方法２(定義しつつ代入)
     let [aa, bb, dd] = [10, 20, 30];
     console.log(aa); // 10
     console.log(bb); // 20
-    console.log(rest.c); // 30
+    console.log(rest.x); // 30
     console.log(dd); // 30
 
     // 分割代入方法３(値の交換)
