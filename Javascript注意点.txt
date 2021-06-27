@@ -1,0 +1,24 @@
+
+【JavaScript | MDN】
+https://developer.mozilla.org/ja/docs/Web/JavaScript
+---------------------------------------------------------
+
+【JavaScriptでvarが非推奨な理由を整理してみた - Qiita】
+https://qiita.com/taiju_suzuki/items/49ed558bd837452353b8
+---------------------------------------------------------
+
+【thisの概要と使い方 | JavaScript応用編 - ウェブプログラミングポータル】
+https://wp-p.info/tpl_rep.php?cat=js-application&fl=r10
+---------------------------------------------------------
+
+【クロージャ - JavaScript | MDN】
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Closures
+---------------------------------------------------------
+
+【JavaScript | 関数 | Let'sプログラミング】
+https://www.javadrive.jp/javascript/function/
+---------------------------------------------------------
+
+【JavaScript - Qiita】
+https://qiita.com/tags/javascript
+---------------------------------------------------------

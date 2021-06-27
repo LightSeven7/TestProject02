@@ -289,6 +289,94 @@ const TestFFF = () => {
 
 /* 高階関数群と使い方 */
 const TestGGG = () => {
+
+    // ES5では使えない...
     const objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
+
+    // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
+    const array1 = [3,1,4,1,5,9,2];
+    const array2 = array1.map(function (item, index, ary) {
+        return item * item;
+    });
+    console.log("map:" + array2);
+
+    // filter(与えられた関数を配列のすべての要素に対して実行し、合格した要素だけからなる新しい配列を作成)
+    // const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+    // const result = words.filter(word => word.length > 6);
+    // console.log("filter test:" + result);
+
+
+    // reduce(配列要素に対してインデックスが小さい方から大きい方へ
+    // 順（左から右の順）に指定された関数を実行)
+    var arr = [3,1,4,1,5,9,2];
+    var result = arr.reduce(function (previousItem, currentItem, index, array) {
+        var message = '';
+        message += '[' + array.toString() + '] ';
+        message += 'No.' + index + ' :';
+        message += previousItem;
+        message += '+';
+        message += currentItem;
+        message += '=';
+        message += (previousItem + currentItem);
+        console.log(message);
+        return previousItem + currentItem;
+    });
+    console.log("reduce result:" + result);
+}
+
+/* プロトタイプ(基本) */
+function createEmployeeBase(name, salary) {
+    return {
+        name2: name,
+        salary2: salary,
+        raiseSalary2: function (percent) {
+            this.salary2 *= 1 + percent / 100;
+        }
+    }
+}
+
+/* プロトタイプ(共有メソッド) */
+const employeePrototype = {
+    raiseSalary: function(percent) {
+        this.salary *= 1 + percent / 100;
+    }
+}
+
+// プロトタイプ設定
+function createEmployee(name, salary) {
+    const result = {name, salary};
+    Object.setPrototypeOf(result, employeePrototype);
+    return result;
+}
+
+// プロトタイプテスト
+const TestHHH = () => {
+    const aaa = createEmployee('kouki', 1000000);
+    aaa.raiseSalary(50);
+    console.log("EmployeeInfo name:" + aaa.name + " " + "salary:" + aaa.salary);
+
+    const bbb = createEmployeeBase('taro', 500000);
+    bbb.raiseSalary2(50);
+    console.log("createEmployeeBase name2:" + bbb.name2 + " salary2:" + bbb.salary2);
+}
+
+/* 動的にプロトタイプ */
+function memberInfo(name, skill) {
+    this.name = name;
+    this.skill = skill;
+}
+
+function TestIII() {
+    const xxx = new memberInfo('kubota', 60);
+    memberInfo.prototype.raiseSkill = function(percent) {
+        this.skill *= 1 + percent / 100;
+    }
+    memberInfo.prototype.fullPowerUp = function (point) {
+        this.skill += point * 2;
+    }
+
+    xxx.raiseSkill(100);
+    xxx.fullPowerUp(40);
+    console.log(xxx.name + "is skill point " + xxx.skill);
 }
