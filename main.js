@@ -306,7 +306,6 @@ const TestGGG = () => {
     // const result = words.filter(word => word.length > 6);
     // console.log("filter test:" + result);
 
-
     // reduce(配列要素に対してインデックスが小さい方から大きい方へ
     // 順（左から右の順）に指定された関数を実行)
     var arr = [3,1,4,1,5,9,2];
@@ -336,7 +335,7 @@ function createEmployeeBase(name, salary) {
     }
 }
 
-/* プロトタイプ(共有メソッド) */
+// プロトタイプ(共有メソッド)
 const employeePrototype = {
     raiseSalary: function(percent) {
         this.salary *= 1 + percent / 100;
@@ -367,7 +366,9 @@ function memberInfo(name, skill) {
     this.skill = skill;
 }
 
+// 無名関数・即実行関数テスト
 function TestIII() {
+
     const xxx = new memberInfo('kubota', 60);
     memberInfo.prototype.raiseSkill = function(percent) {
         this.skill *= 1 + percent / 100;
@@ -379,4 +380,164 @@ function TestIII() {
     xxx.raiseSkill(100);
     xxx.fullPowerUp(40);
     console.log(xxx.name + "is skill point " + xxx.skill);
+
+    // 無名関数
+    var x = function(y) {
+        return y * y;
+    };
+    console.log("x test:" + String(x(7)));
+
+    // 即実行関数(※nameに外部からアクセスできない)
+    var result = (function () {
+        var name = "Barry";
+        return name;
+    })();
+    console.log("result :" + result);
+}
+
+// クロージャ―テスト１
+function TestJJJ() {
+    var makeCounter = function() {
+        var privateCounter = 0;
+        function changeBy(val) {
+            privateCounter += val;
+        }
+        return {
+            increment: function() {
+                changeBy(1);
+            },
+            decrement: function() {
+                changeBy(-1);
+            },
+            value: function() {
+                return privateCounter;
+            }
+        }
+    };
+
+    var counter1 = makeCounter();
+    var counter2 = makeCounter();
+
+    alert(counter1.value());  // 0.
+
+    counter1.increment();
+    counter1.increment();
+    alert(counter1.value()); // 2.
+
+    counter1.decrement();
+    alert(counter1.value()); // 1.
+    alert(counter2.value()); // 0.
+}
+
+// クロージャ－テスト２
+function TestKKK() {
+
+    var counter = (function() {
+        var privateCounter = 0;
+        function changeBy(val) {
+            privateCounter += val;
+        }
+        return {
+            increment: function() {
+                changeBy(1);
+            },
+            decrement: function() {
+                changeBy(-1);
+            },
+            value: function() {
+                return privateCounter;
+            }
+        };
+    })();
+
+    console.log(counter.value());  // 0.
+
+    counter.increment();
+    counter.increment();
+    console.log(counter.value());  // 2.
+
+    counter.decrement();
+    console.log(counter.value());  // 1.
+}
+
+// ES5でのforEach使用方法
+function TestLLL() {
+
+    //  要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
+    var objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
+    objArray.forEach(function(element, index, array){
+        console.log('Index:' + index);
+        console.log('Element:' + element);
+        console.log('Array:' + array);
+    });
+
+    // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
+    const array1 = [3,1,4,1,5,9,2];
+    const array2 = array1.map(function (item, index, ary) {
+        return console.log("index:" + index + "" + item * item);
+    });
+    console.log("map:" + array2);
+
+    // reduce(配列要素に対してインデックスが小さい方から大きい方へ
+    // 順（左から右の順）に指定された関数を実行)
+    var arr = [3,1,4,1,5,9,2];
+    var result2 = arr.reduce(function (previousItem, currentItem, index, array) {
+        var message = '';
+        message += '[' + array.toString() + '] ';
+        message += 'No.' + index + ' :';
+        message += previousItem;
+        message += '+';
+        message += currentItem;
+        message += '=';
+        message += (previousItem + currentItem);
+        console.log(message);
+        return previousItem + currentItem;
+    });
+    console.log("reduce result2:" + result2);
+
+    // filter(与えられた関数を配列のすべての要素に対して実行し、
+    // 判定で真を返した要素だけから新しい配列を作成して返する)
+    var arr2 = arr.filter(function (value, incex, array) {
+        if (value > array[2]) return value;
+    });
+    console.log("arr2:" + arr2);
+
+    var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
+    arr_months.sort();
+    console.log(arr_months);
+    // expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+    var arr_number = [1, 30, 4, 21, 100000];
+    arr_number.sort();
+    console.log(arr_number);
+    // expected output: Array [1, 100000, 21, 30, 4]
+
+}
+
+function TestMMM() {
+
+    function showHelp(help) {
+        document.getElementById('help').innerHTML = help;
+    }
+
+    function makeHelpCallback(help) {
+        return function() {
+            showHelp(help);
+        };
+    }
+
+    function setupHelp() {
+        var helpText = [
+            {'id': 'email', 'help': 'メールアドレス'},
+            {'id': 'name', 'help': '氏名'},
+            {'id': 'age', 'help': '年齢 (17歳以上)'}
+        ];
+
+        for (var i = 0; i < helpText.length; i++) {
+            var item = helpText[i];
+            document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
+        }
+    }
+
+    setupHelp();
 }
