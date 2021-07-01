@@ -277,7 +277,10 @@ const TestOutputLog = () => {
         address: "aaa@yahoo.co.jp",
         pw: "testtest",
     }
+
+    // Object形式のデータをJSON形式のデータに変換
     console.log(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
+    alert(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
 }
 
 // 無名関数(関数リテラル)
