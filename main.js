@@ -293,7 +293,7 @@ const TestFFF = () => {
 /* 高階関数群と使い方 */
 const TestGGG = () => {
 
-    // ES5では使えない...
+    // ES5ではアロー関数は使えない
     const objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
 
