@@ -466,7 +466,7 @@ function TestKKK() {
 // ES5でのforEach使用方法
 function TestLLL() {
 
-    //  要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
+    // 要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
     var objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach(function(element, index, array){
         console.log('Index:' + index);
@@ -476,10 +476,11 @@ function TestLLL() {
 
     // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
     const array1 = [3,1,4,1,5,9,2];
-    const array2 = array1.map(function (item, index, ary) {
-        return console.log("index:" + index + "" + item * item);
+    const array22 = array1.map(function (item, index, ary) {
+        console.log("index:" + index + " " + item * item);
+        return item * item;
     });
-    console.log("map:" + array2);
+    console.log("map:" + array22);
 
     // reduce(配列要素に対してインデックスが小さい方から大きい方へ
     // 順（左から右の順）に指定された関数を実行)
@@ -517,6 +518,7 @@ function TestLLL() {
 
 }
 
+/* クロージャ―テスト() */
 function TestMMM() {
 
     function showHelp(help) {
