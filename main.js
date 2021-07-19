@@ -501,19 +501,20 @@ function TestLLL() {
 
     // filter(与えられた関数を配列のすべての要素に対して実行し、
     // 判定で真を返した要素だけから新しい配列を作成して返する)
-    var arr2 = arr.filter(function (value, incex, array) {
+    var arr2 = arr.filter(function (value, index, array) {
         if (value > array[2]) return value;
     });
     console.log("arr2:" + arr2);
 
-    var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
-    arr_months.sort();
-    console.log(arr_months);
+
+    // var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
+    // arr_months.sort();
+    // console.log(arr_months);
     // expected output: Array ["Dec", "Feb", "Jan", "March"]
 
-    var arr_number = [1, 30, 4, 21, 100000];
-    arr_number.sort();
-    console.log(arr_number);
+    // var arr_number = [1, 30, 4, 21, 100000];
+    // arr_number.sort();
+    // console.log(arr_number);
     // expected output: Array [1, 100000, 21, 30, 4]
 
 }
