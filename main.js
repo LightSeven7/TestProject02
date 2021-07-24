@@ -466,6 +466,7 @@ function TestKKK() {
 // ES5でのforEach使用方法
 function TestLLL() {
 
+    /* forEach */
     // 要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
     var objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
     objArray.forEach(function(element, index, array){
@@ -474,7 +475,9 @@ function TestLLL() {
         console.log('Array:' + array);
     });
 
+    /* map */
     // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
+    // ※この辺りの関数は無名関数にしている。別途、関数を定義して呼び出すことも可能
     const array1 = [3,1,4,1,5,9,2];
     const array22 = array1.map(function (item, index, ary) {
         console.log("index:" + index + " " + item * item);
@@ -482,9 +485,10 @@ function TestLLL() {
     });
     console.log("map:" + array22);
 
+    /* reduce */
     // reduce(配列要素に対してインデックスが小さい方から大きい方へ
     // 順（左から右の順）に指定された関数を実行)
-    var arr = [3,1,4,1,5,9,2];
+    var arr = [3, 1, 4, 1, 5, 9, 2, 11];
     var result2 = arr.reduce(function (previousItem, currentItem, index, array) {
         var message = '';
         message += '[' + array.toString() + '] ';
@@ -499,6 +503,7 @@ function TestLLL() {
     });
     console.log("reduce result2:" + result2);
 
+    /* filter */
     // filter(与えられた関数を配列のすべての要素に対して実行し、
     // 判定で真を返した要素だけから新しい配列を作成して返する)
     var arr2 = arr.filter(function (value, index, array) {
@@ -506,17 +511,113 @@ function TestLLL() {
     });
     console.log("arr2:" + arr2);
 
+    /* some */
+    // 評価式がtrueになる条件が一つでもあればtrueを返す
+    console.log('array some test:' + arr.some(function (value, index, array) {
+        return value > 10;
+    }));
 
-    // var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
-    // arr_months.sort();
-    // console.log(arr_months);
+    /* find */
+    // 配列内で一致する要素を検索する
+    var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
+    var valueName = arr_months.find(function (value, index, array) {
+        return 'Feb' === value;
+    });
+    console.log('arr_month match value:' + valueName);
+
+    /* includes */
+    // 配列内に一致する要素があればtrueなければfalseを返す
+    console.log('Jan is match:' + arr_months.includes('Jan', 0));
+
+    /* flat */
+    // 多次元の配列を平坦化する
+    var arr3 = [[1,2],[3,4]];
+    var arr4 = arr3.flat();
+    console.log('arr3 を平坦化 ' + arr4);
+
+    /* concat */
+    // 配列に追加
+    var arr6 = [7, 8];
+    var arr5 = arr4.concat(5, 6, arr6);
+    console.log("配列追加:" + arr5);
+
+    /* 配列の欠けてる要素を取り除く */
+    // var arr10 = [, 2, , 7, , 9].filter(x => true); //ES6
+    var arr10 = [, 2, , 7, , 9].filter(function (x) {
+        return true;
+    });
+    console.log(arr10);
+
+    /* assign */
+    // 複数オブジェクトをallObjへコピーする
+    var objA = {a:'Ant'};
+    var objB = {b:'bee'};
+    var objC = {c:'cicada'};
+    var allObj = Object.assign(objA, objB, objC);
+    console.log('allObj a:' + allObj.a);
+
+    // 既存オブジェクトへ追加する場合
+    var objD = {d:'lion'};
+    allObj = Object.assign({}, allObj, objD);
+    console.log('allObj a:' + allObj.a + ' d:' + allObj.d);
+
+    /* オブジェクト内に配列格納処理 */
+    var arr7 = [1,2,3,4];
+    var arr8 = [5,6,7,8];
+    var arr9 = [9,10,11,12];
+
+    var helpText = [
+        {'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7},
+        {'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8},
+        {'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': arr9},
+    ];
+
+    for (var oneData of helpText) {
+        console.log(oneData.id + ' ' + oneData.help + ' ' + oneData.help2 + ' ' + oneData.a_data);
+    }
+
+    // 辞書として昇順にソート
+    var arr_months = ['March', 'Jan', 'Feb', 'Dec'];
+    arr_months.sort();
+    console.log(arr_months);
     // expected output: Array ["Dec", "Feb", "Jan", "March"]
 
-    // var arr_number = [1, 30, 4, 21, 100000];
-    // arr_number.sort();
-    // console.log(arr_number);
+    // 数字として昇順にソート
+    var arr_number = [1, 30, 4, 21, 100000];
+    arr_number.sort(function (a, b) {
+        return a - b;
+    });
+    console.log(arr_number);
     // expected output: Array [1, 100000, 21, 30, 4]
 
+    // オブジェクトを配列に格納
+    var arr10 = [];
+    arr10.push({'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7});
+    arr10.push({'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8});
+    arr10.push({'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': arr9});
+
+    // 配列の各要素(オブジェクト)をchgData関数で実行する
+    var arr11 = arr10.map(chgData);
+    arr11.map(function (value, index) {
+        console.log('arr11 ' + Number(index + 1) + ': ' + value.id + ' '
+                    + value.help + ' ' + value.help2 + ' [' + value.a_data + ']');
+    });
+
+}
+
+function chgData (arrObj) {
+
+    var retObj = {};
+    retObj = Object.assign({} ,{'id': 'user_' + arrObj.id});
+    retObj = Object.assign({}, retObj, {'help': 'ユーザー' + arrObj.help});
+    retObj = Object.assign({}, retObj, {'help2': 'ユーザー' + arrObj.help2});
+
+    var tmpArr = [];
+    for (var val of arrObj.a_data) tmpArr.push(val * 2);
+    retObj = Object.assign({}, retObj, {'a_data': tmpArr});
+
+    console.log('retObj:' + retObj.id + ' ' + retObj.help + ' ' + retObj.help2 + ' ' + retObj.a_data);
+    return retObj;
 }
 
 /* クロージャ―テスト() */
@@ -547,3 +648,4 @@ function TestMMM() {
 
     setupHelp();
 }
+
