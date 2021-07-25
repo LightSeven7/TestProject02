@@ -22,3 +22,12 @@ https://www.javadrive.jp/javascript/function/
 【JavaScript - Qiita】
 https://qiita.com/tags/javascript
 ---------------------------------------------------------
+
+※2021/07/25追記
+【オブジェクトでの作業 - JavaScript | MDN】
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Working_with_Objects
+---------------------------------------------------------
+
+【JavaScript | 複数のオブジェクトを一つにまとめる(assign)】
+https://www.javadrive.jp/javascript/object/index11.html
+---------------------------------------------------------

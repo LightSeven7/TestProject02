@@ -463,6 +463,35 @@ function TestKKK() {
     console.log(counter.value());  // 1.
 }
 
+/* クロージャ―テスト */
+function TestMMM() {
+
+    function showHelp(help) {
+        document.getElementById('help').innerHTML = help;
+    }
+
+    function makeHelpCallback(help) {
+        return function() {
+            showHelp(help);
+        };
+    }
+
+    function setupHelp() {
+        var helpText = [
+            {'id': 'email', 'help': 'メールアドレス'},
+            {'id': 'name', 'help': '氏名'},
+            {'id': 'age', 'help': '年齢 (17歳以上)'}
+        ];
+
+        for (var i = 0; i < helpText.length; i++) {
+            var item = helpText[i];
+            document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
+        }
+    }
+
+    setupHelp();
+}
+
 // ES5でのforEach使用方法
 function TestLLL() {
 
@@ -571,6 +600,7 @@ function TestLLL() {
         {'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8},
         {'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': arr9},
     ];
+    console.log('helpText Length:' + helpText.length);
 
     for (var oneData of helpText) {
         console.log(oneData.id + ' ' + oneData.help + ' ' + oneData.help2 + ' ' + oneData.a_data);
@@ -590,7 +620,7 @@ function TestLLL() {
     console.log(arr_number);
     // expected output: Array [1, 100000, 21, 30, 4]
 
-    // オブジェクトを配列に格納
+    // オブジェクトを配列に格納(569行目とやっていることは一緒)
     var arr10 = [];
     arr10.push({'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7});
     arr10.push({'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8});
@@ -603,10 +633,17 @@ function TestLLL() {
                     + value.help + ' ' + value.help2 + ' [' + value.a_data + ']');
     });
 
+    console.log('arr11 1:' + arr11[0].id);
+    console.log('arr11 2:' + arr11[1].a_data);
+
+    var objAAA = null;
+    // ChgObjData(objAAA); // undefined null test
+    var objBBB = ChgObjData(arr11);
+    // console.log('obj:' + objBBB[1]);
 }
 
+// 引数としてオブジェクトデータを受け取り、編集後に一つのオブジェクトにまとめて返す
 function chgData (arrObj) {
-
     var retObj = {};
     retObj = Object.assign({} ,{'id': 'user_' + arrObj.id});
     retObj = Object.assign({}, retObj, {'help': 'ユーザー' + arrObj.help});
@@ -620,32 +657,22 @@ function chgData (arrObj) {
     return retObj;
 }
 
-/* クロージャ―テスト() */
-function TestMMM() {
+function ChgObjData (objects) {
 
-    function showHelp(help) {
-        document.getElementById('help').innerHTML = help;
-    }
+    if (!objects || objects.length === 0) console.log('objects not exsist');
 
-    function makeHelpCallback(help) {
-        return function() {
-            showHelp(help);
-        };
-    }
+    Object.entries(objects).map(function (value, index) {
+        console.log('id ' + index + ':' + value[1].id);
+        console.log('help ' + index + ':' + value[1].help);
+        console.log('help2 ' + index + ':' + value[1].help2);
+        console.log('Data ' + index + ':' + value[1].a_data);
+    });
 
-    function setupHelp() {
-        var helpText = [
-            {'id': 'email', 'help': 'メールアドレス'},
-            {'id': 'name', 'help': '氏名'},
-            {'id': 'age', 'help': '年齢 (17歳以上)'}
-        ];
+    var retObj = Object.entries(objects).filter(function (value) {
+        return value[1].a_data[3] > 15;
+    });
 
-        for (var i = 0; i < helpText.length; i++) {
-            var item = helpText[i];
-            document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
-        }
-    }
-
-    setupHelp();
+    console.log('retObj:' + retObj[0][1].a_data);
+    console.log('retObj:' + retObj[1][1].a_data);
+    return retObj;
 }
-
