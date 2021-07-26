@@ -536,7 +536,7 @@ function TestLLL() {
     // filter(与えられた関数を配列のすべての要素に対して実行し、
     // 判定で真を返した要素だけから新しい配列を作成して返する)
     var arr2 = arr.filter(function (value, index, array) {
-        if (value > array[2]) return value;
+        return value > array[2];
     });
     console.log("arr2:" + arr2);
 
@@ -640,6 +640,14 @@ function TestLLL() {
     // ChgObjData(objAAA); // undefined null test
     var objBBB = ChgObjData(arr11);
     // console.log('obj:' + objBBB[1]);
+
+    /* プロパティの存在チェック */
+    // 「a_data」プロパティがオブジェクト内に存在するかチェック
+    if ('a_data' in objBBB[0][1]) {
+        console.log('a_data is arr11 to exsist!');
+    } else {
+        console.log('a_data is not arr11 to exsist!');
+    }
 }
 
 // 引数としてオブジェクトデータを受け取り、編集後に一つのオブジェクトにまとめて返す
@@ -661,6 +669,7 @@ function ChgObjData (objects) {
 
     if (!objects || objects.length === 0) console.log('objects not exsist');
 
+    /* Array map の使い方 */
     Object.entries(objects).map(function (value, index) {
         console.log('id ' + index + ':' + value[1].id);
         console.log('help ' + index + ':' + value[1].help);
@@ -668,6 +677,7 @@ function ChgObjData (objects) {
         console.log('Data ' + index + ':' + value[1].a_data);
     });
 
+    /* Array filter の使い方 */
     var retObj = Object.entries(objects).filter(function (value) {
         return value[1].a_data[3] > 15;
     });
@@ -675,4 +685,98 @@ function ChgObjData (objects) {
     console.log('retObj:' + retObj[0][1].a_data);
     console.log('retObj:' + retObj[1][1].a_data);
     return retObj;
+}
+
+// apply関数の使用方法
+const TestApply = () => {
+
+    // 既存の配列に配列を追加する
+    const array = ['a', 'b'];
+    const elements = [0, 1, 2];
+    array.push.apply(array, elements);
+    console.info(array); // ["a", "b", 0, 1, 2]
+
+
+    // ループ文として代用する
+    const array2 = [5, 6, 2, 3, 7];
+    let max = Math.max.apply(null, array2);
+    let min = Math.min.apply(null, array2);
+    console.log('Max:' + max + ', Min:' + min);
+
+    return;
+}
+
+// bind関数の使用方法
+const TestBind = () => {
+
+    function list() {
+        return Array.prototype.slice.call(arguments);
+    }
+
+    const addArguments = (arg1, arg2) => arg1 + arg2;
+
+    const list1 = list(1, 2, 3);        // [1, 2, 3]
+    console.log('list1:' + list1);
+
+    const result1 = addArguments(1, 2); // 3
+    console.log('result1:' + result1);
+
+    // 先頭の引数が設定済みの関数を生成します。
+    const leadingThirtysevenList = list.bind(null, 37);
+
+    // 第一引数が設定済みの関数を生成します。
+    const addThirtySeven = addArguments.bind(null, 37);
+
+    const list2 = leadingThirtysevenList();
+    console.log('list2:' + list2);      // [37]
+
+    const list3 = leadingThirtysevenList(1, 2, 3);
+    console.log('list3:' + list3);      // [37, 1, 2, 3]
+
+    const result2 = addThirtySeven(5);
+    console.log('result2:' + result2 + ' (37 + 5 = 42)');   // 37 + 5 = 42
+
+    const result3 = addThirtySeven(5, 10);
+    console.log('result3:' + result3 + ' (37 + 5 = 42 the second argument is ignored)');
+    //  37 + 5 = 42
+    //  (the second argument is ignored)
+
+    return;
+}
+
+// this をコールバック関数と明確に結びつけて (バインドして)、インスタンスを維持する
+const TestBind_2st = () => {
+    function LateBloomer() {
+        this.petalCount = Math.floor(Math.random() * 12) + 1;
+    }
+
+    // 1 秒遅延させてから bloom を宣言する
+    LateBloomer.prototype.bloom = function() {
+        window.setTimeout(this.declare.bind(this), 1000);
+    };
+
+    LateBloomer.prototype.declare = function() {
+        console.log(`I am a beautiful flower with ${this.petalCount} petals!`);
+    };
+
+    const flower = new LateBloomer();
+    flower.bloom();
+    //  after 1 second, calls 'flower.declare()'
+
+    return;
+}
+
+// 特定の this を必要とするような関数のショートカットを作成する
+const TestBind_3rd = () => {
+
+    // slice関数を定義
+    const unboundSlice = Array.prototype.slice;
+
+    // Slice関数にapply関数をバインドする
+    const slice = Function.prototype.apply.bind(unboundSlice);
+
+    // slice(apply)関数として利用する
+    slice(arguments);
+
+    return;
 }
