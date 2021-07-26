@@ -492,8 +492,8 @@ function TestMMM() {
     setupHelp();
 }
 
-// ES5でのforEach使用方法
-function TestLLL() {
+// ES5での各Array用関数の使用方法
+function TestArrayMethods() {
 
     /* forEach */
     // 要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
@@ -687,7 +687,10 @@ function ChgObjData (objects) {
     return retObj;
 }
 
+
+/* apply関数 */
 // apply関数の使用方法
+// apply関数は、引数の単一の配列のみを受け取る
 const TestApply = () => {
 
     // 既存の配列に配列を追加する
@@ -706,9 +709,66 @@ const TestApply = () => {
     return;
 }
 
+
+/* call関数 */
+// call() はあるオブジェクトに所属する関数やメソッドを、別なオブジェクトに割り当てて呼び出す
+const TestCall = () => {
+
+    console.log('===============');
+    console.log('[Case1] オブジェクトのコンストラクターを連鎖させる');
+    // オブジェクトのコンストラクターを連鎖させる
+    function Product(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    function Food(name, price) {
+        Product.call(this, name, price);
+        this.category = 'food';
+    }
+
+    function Toy(name, price) {
+        Product.call(this, name, price);
+        this.category = 'toy';
+    }
+
+    const cheese = new Food('feta', 5);
+    const fun = new Toy('robot', 40);
+
+    console.log('cheese name:' + cheese.name + ' price:' + cheese.price + ' category:' + cheese.category);
+    console.log('fun name:' + fun.name + ' price:' + fun.price + ' category:' + fun.category);
+
+
+    console.log('===============');
+    console.log('[Case2] 無名関数を作成して call を使用して配列内の各オブジェクトに対して呼び出し');
+
+    // 無名関数を作成して call を使用して配列内の各オブジェクトに対して呼び出し
+    const animals = [
+        { species: 'Lion', name: 'King' },
+        { species: 'Whale', name: 'Fail' }
+    ];
+
+    for (let i = 0; i < animals.length; i++) {
+        (function(i) {
+        this.print = function() {
+            console.log('#' + i + ' ' + this.species
+                        + ': ' + this.name);
+        }
+        this.print();
+        }).call(animals[i], i);
+    }
+    console.log('===============');
+
+    return;
+}
+
+
+/* bind関数 */
 // bind関数の使用方法
 const TestBind = () => {
 
+    console.log('===============');
+    console.log('[Case1] 基本的なbind関数の使用方法');
     function list() {
         return Array.prototype.slice.call(arguments);
     }
@@ -741,11 +801,25 @@ const TestBind = () => {
     //  37 + 5 = 42
     //  (the second argument is ignored)
 
-    return;
-}
 
-// this をコールバック関数と明確に結びつけて (バインドして)、インスタンスを維持する
-const TestBind_2st = () => {
+    console.log('===============');
+    console.log('[Case2] 特定の this を必要とするような関数のショートカットを作成する');
+
+    // slice関数を定義
+    const unboundSlice = Array.prototype.slice;
+
+    // Slice関数にapply関数をバインドする
+    const slice = Function.prototype.apply.bind(unboundSlice);
+
+    // slice(apply)関数として利用する
+    const array = ['sss', 'bbbb', 12, 23, 45];
+    const vals = slice(array);
+    console.log('slice:' + vals);
+
+
+    console.log('===============');
+    console.log('[Case3] this をコールバック関数と明確に結びつけて (バインドして)、インスタンスを維持する');
+    // this をコールバック関数と明確に結びつけて (バインドして)、インスタンスを維持する
     function LateBloomer() {
         this.petalCount = Math.floor(Math.random() * 12) + 1;
     }
@@ -762,21 +836,7 @@ const TestBind_2st = () => {
     const flower = new LateBloomer();
     flower.bloom();
     //  after 1 second, calls 'flower.declare()'
-
-    return;
-}
-
-// 特定の this を必要とするような関数のショートカットを作成する
-const TestBind_3rd = () => {
-
-    // slice関数を定義
-    const unboundSlice = Array.prototype.slice;
-
-    // Slice関数にapply関数をバインドする
-    const slice = Function.prototype.apply.bind(unboundSlice);
-
-    // slice(apply)関数として利用する
-    slice(arguments);
+    console.log('===============');
 
     return;
 }
