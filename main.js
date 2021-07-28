@@ -1,13 +1,5 @@
 'use strict'
 
-function showSum(obj) {
-    var num1 = 1;
-    var num2 = 2;
-    var sum = num1 + num2;
-    console.log(obj);
-    alert(sum);
-}
-
 // 「.strike」クラスに取り消し線をつける
 function dispLineThrough() {
     $('.strike').css('text-decoration', 'line-through');
@@ -65,7 +57,27 @@ const TestAAA = (valA) => {
 }
 
 const TestBBB = () => {
-    alert(TestAAA("Call to TestAAA" /* func test */));
+    alert(TestAAA("Call to TestAAA"));
+}
+
+// 即時関数サンプル
+const TestImmediateMethod = () => {
+    var result = (function (param1, param2) {
+        return param1 + param2;
+    })(1, 2);
+    console.log('TestImmediateMethod:' + result); //3が出力される。
+}
+
+// 即時関数をアロー関数で記述
+const TestArrowMethod = () => {
+
+    (v => console.log('あああ'))();
+
+    (v => {
+        console.log('あああ');
+        console.log('いいい');
+    })(); // => あああ いいい
+
 }
 
 
