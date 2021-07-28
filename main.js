@@ -781,6 +781,7 @@ const TestBind = () => {
 
     console.log('===============');
     console.log('[Case1] 基本的なbind関数の使用方法');
+
     function list() {
         return Array.prototype.slice.call(arguments);
     }
