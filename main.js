@@ -673,7 +673,8 @@ function chgData (arrObj) {
     for (var val of arrObj.a_data) tmpArr.push(val * 2);
     retObj = Object.assign({}, retObj, {'a_data': tmpArr});
 
-    console.log('retObj:' + retObj.id + ' ' + retObj.help + ' ' + retObj.help2 + ' ' + retObj.a_data);
+    console.log('retObj:' + retObj.id + ' ' + retObj.help + ' '
+                + retObj.help2 + ' ' + retObj.a_data);
     return retObj;
 }
 
@@ -851,4 +852,12 @@ const TestBind = () => {
     console.log('===============');
 
     return;
+}
+
+function TestSample () {
+    var sum = 0;
+    [1,2,3,4,5,6,7,8,9,10].map(function (value) {
+        value % 2 === 0 ? sum += value * 2 : sum += value;
+    });
+    alert('SUM:' + sum);
 }
