@@ -701,7 +701,7 @@ function ChgObjData (objects) {
 }
 
 
-/* apply関数 */
+/* apply関数(ES5可能) */
 // apply関数の使用方法
 // apply関数は、引数の単一の配列のみを受け取る
 const TestApply = () => {
@@ -723,7 +723,7 @@ const TestApply = () => {
 }
 
 
-/* call関数 */
+/* call関数(ES5可能) */
 // call() はあるオブジェクトに所属する関数やメソッドを、別なオブジェクトに割り当てて呼び出す
 const TestCall = () => {
 
