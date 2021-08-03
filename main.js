@@ -870,3 +870,17 @@ function TestSample () {
 
     return alert('SUM:' + sum);
 }
+
+function TestSample2 () {
+
+    var val1 = 1;
+    var val2 = 2;
+    var val3 = 2;
+
+    // 比較演算子の使用方法
+    if (val1 <= val2) console.log('val1 less val2');
+    if (val1 !== val2) console.log('val1 not equal val2');
+    if (val2 === val3) console.log('val2 equal val3');
+
+    return;
+}
