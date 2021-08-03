@@ -3,16 +3,32 @@
 https://developer.mozilla.org/ja/docs/Web/JavaScript
 ---------------------------------------------------------
 
+【オブジェクトでの作業 - JavaScript | MDN】
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Working_with_Objects
+---------------------------------------------------------
+
+【JavaScript | 複数のオブジェクトを一つにまとめる(assign)】
+https://www.javadrive.jp/javascript/object/index11.html
+---------------------------------------------------------
+
+【JavaScriptで配列を扱う時によく使うメソッド＃9【オブジェクトを配列に変換する】
+https://designsupply-web.com/media/knowledgeside/5603/
+---------------------------------------------------------
+
+【Object.entries() を使ってObject → 配列変換 - Qiita】
+https://qiita.com/bbbks9/items/6ce80ae1c0fd28a3a9d7
+---------------------------------------------------------
+
+【クロージャ - JavaScript | MDN】
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Closures
+---------------------------------------------------------
+
 【JavaScriptでvarが非推奨な理由を整理してみた - Qiita】
 https://qiita.com/taiju_suzuki/items/49ed558bd837452353b8
 ---------------------------------------------------------
 
 【thisの概要と使い方 | JavaScript応用編 - ウェブプログラミングポータル】
 https://wp-p.info/tpl_rep.php?cat=js-application&fl=r10
----------------------------------------------------------
-
-【クロージャ - JavaScript | MDN】
-https://developer.mozilla.org/ja/docs/Web/JavaScript/Closures
 ---------------------------------------------------------
 
 【JavaScript | 関数 | Let'sプログラミング】
@@ -23,11 +39,10 @@ https://www.javadrive.jp/javascript/function/
 https://qiita.com/tags/javascript
 ---------------------------------------------------------
 
-※2021/07/25追記
-【オブジェクトでの作業 - JavaScript | MDN】
-https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Working_with_Objects
+【【Git】追跡ブランチを変更 - Qiita】
+https://qiita.com/msht0511/items/820e8ec8900fe776dde7
 ---------------------------------------------------------
 
-【JavaScript | 複数のオブジェクトを一つにまとめる(assign)】
-https://www.javadrive.jp/javascript/object/index11.html
+【git remote | Atlassian Git Tutorial】
+https://www.atlassian.com/ja/git/tutorials/syncing
 ---------------------------------------------------------
