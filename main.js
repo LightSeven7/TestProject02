@@ -870,7 +870,6 @@ function TestSample () {
 
     return alert('SUM:' + sum);
 }
-
 function TestSample2 () {
 
     var val1 = 1;
