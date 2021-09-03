@@ -362,7 +362,7 @@ function createEmployee(name, salary) {
     const result = {name, salary};
     Object.setPrototypeOf(result, employeePrototype);
     return result;
-}
+}   
 
 // プロトタイプテスト
 const TestHHH = () => {
@@ -632,6 +632,9 @@ function TestArrayMethods() {
     console.log(arr_number);
     // expected output: Array [1, 100000, 21, 30, 4]
 
+    // 二次元配列をソート
+    arrayTaxationList.sort(function(a, b) { return(a[0] - b[0]); });
+
     // オブジェクトを配列に格納(569行目とやっていることは一緒)
     var arr10 = [];
     arr10.push({'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7});
@@ -883,3 +886,164 @@ function TestSample2 () {
 
     return;
 }
+
+function TestSample2 () {
+
+    // var helpText = [
+    //     {'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': 100},
+    //     {'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': 200},
+    //     {'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': 300},
+    // ];
+
+    // var retObj = {};
+    // retObj = Object.assign({} ,{'id': 'user_' + arrObj.id});
+    // retObj = Object.assign({}, retObj, {'help': 'ユーザー' + arrObj.help});
+    // retObj = Object.assign({}, retObj, {'help2': 'ユーザー' + arrObj.help2});
+
+    var retObj = {};
+    retObj = Object.assign({} ,{'id': '111'});
+    retObj = Object.assign({}, retObj, {'id': '222'});
+    // retObj = Object.assign(retObj, {'id': '333'});
+    // retObj = Object.assign(retObj, {'id': '444'});
+
+    // retObj = Object.assign({}, retObj, {'help': 'ユーザー'});
+    // retObj = Object.assign({}, retObj, {'help2': 'ユーザーSSS'});
+    // retObj = Object.assign({}, retObj, {'a_data': '300'});
+
+    // Object形式のデータをJSON形式のデータに変換
+    console.log(JSON.stringify(retObj));
+    // console.log(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
+    // alert(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
+
+    return;
+}
+
+function LoadProc() {
+    var curDate = new Date();
+    var Year = curDate.getFullYear();
+    var Month = curDate.getMonth()+1;
+    var Date = curDate.getDate();
+    var Hour = curDate.getHours();
+    var Min = curDate.getMinutes();
+    var Sec = curDate.getSeconds();
+    console.log(Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec);
+}
+
+
+/**
+ * 四捨五入関数
+ * [引数] num: 数値, digit: 桁数 (整数値)
+ * [返却値] 計算結果
+ */
+function round(num, digit) {
+
+    var digitVal = Math.pow( 10, digit );
+    var retVal;
+
+    // 誤差を生じにくくさせる
+    if (digitVal < 1) {
+        retVal = Math.round(num * digitVal) * Math.pow(10, -1 * digit);
+    } else {
+        retVal = Math.round(num * digitVal) / digitVal;
+    }
+
+    console.log('四捨五入結果：' + retVal);
+    return retVal;
+}
+
+/**
+ * 切り上げ関数
+ * [引数] num: 数値, digit: 桁数 (整数値)
+ * [返却値] 計算結果
+ */
+function roundUp(num, digit) {
+
+    // Excel に仕様を合わせるための符号入れ替え用変数
+    var sign =  num < 0 ? -1 : 1;
+    var digitVal = Math.pow( 10, digit );
+    var retVal;
+
+    // 誤差を生じにくくさせる
+    if (digitVal < 1) {
+        retVal = Math.ceil(num * sign * digitVal) * sign * Math.pow(10, -1 * digit);
+    } else {
+        retVal = Math.ceil(num * sign * digitVal) * sign / digitVal;
+    }
+
+    console.log('切り上げ結果：' + retVal);
+    return retVal;
+}
+
+/**
+ * 切り捨て関数
+ * [引数] num: 数値, digit: 桁数 (整数値)
+ * [返却値] 計算結果
+ */
+function roundDown(num, digit) {
+
+    var digitVal = Math.pow(10, digit);
+    var retVal;
+
+    // 誤差を生じにくくさせる
+    if (digitVal < 1) {
+        retVal = Math.floor( num * digitVal ) * Math.pow( 10, -1 * digit );
+    } else {
+        retVal = Math.floor( num * digitVal ) / digitVal;
+    }
+
+    console.log('切り捨て結果：' + retVal);
+    return retVal;
+}
+
+function maptest () {
+
+    var aryTest = [1,2,3,4,5];
+    console.log('aryTest:' + aryTest);
+
+    aryTest.map(function (value, index, array) {
+        value = value * 2;
+        console.log('in array:' + array);
+        return;
+    });
+
+    console.log('aryTest after:' + aryTest);
+    return;
+}
+
+// 第２キーまであるソート関数
+function sort2 (array, order) {
+    if (!order || !order.match(/^(ASC|DESC)$/i)) order = 'ASC';
+    order = order.toUpperCase();
+
+    var keys = [];
+    for (var i = 2, len = arguments.length; i < len; i++) keys.push(arguments[i]);
+
+    var targets = [].concat(array);
+    targets.sort(function(a, b) {
+        for (var i = 0, len = keys.length; i < len; i++) {
+            if (typeof keys[i] === 'string') {
+                if (order === 'ASC') {
+                    if (a[keys[i]] < b[keys[i]]) return -1;
+                    if (a[keys[i]] > b[keys[i]]) return 1;
+                } else {
+                    if (a[keys[i]] > b[keys[i]]) return -1;
+                    if (a[keys[i]] < b[keys[i]]) return 1;
+                }
+            } else {
+                var localOrder = keys[i].order || 'ASC';
+                if (!localOrder.match(/^(ASC|DESC)$/i)) order = 'ASC';
+                order = order.toUpperCase();
+
+                if (localOrder === 'ASC') {
+                    if (a[keys[i].key] < b[keys[i].key]) return -1;
+                    if (a[keys[i].key] > b[keys[i].key]) return 1;
+                } else {
+                    if (a[keys[i].key] > b[keys[i].key]) return -1;
+                    if (a[keys[i].key] < b[keys[i].key]) return 1;
+                }
+            }
+        }
+        return 0;
+    });
+    return targets;
+};
