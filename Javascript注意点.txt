@@ -65,4 +65,10 @@ https://paiza.hatenablog.com/entry/2021/07/21/130000?type=mail
 ------------------------------------------------------
 【Node.js & npm をインストーラー無しで 手軽にはじめる - Cottpic】
 [https://www.cottpic.com/2019/04/use-NodeJS-without-installer.html]
+
+環境変数に以下のパスを追加(パスはNode.Jsを配置したパス)
+Pat → C:\node-v14.18.0-x64
+NODE_PATH → C:\node-v14.18.0-x64\node_modules\npm\node_modules
+            C:\node-v14.18.0-x64\node_modules\npm
 ------------------------------------------------------
+
