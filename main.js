@@ -994,3 +994,37 @@ function roundDown(num, digit) {
     console.log('切り捨て結果：' + retVal);
     return retVal;
 }
+
+function getCurrentDate () {
+
+    // 例）202110の場合、2021年10月末日を取得する方法
+    var yyyymm = '202110';
+    var iYear = yyyymm.slice(0, 4);
+    var iMonth = yyyymm.slice(4);
+    var currentDate = new Date(iYear, iMonth, 0);
+
+    // 今日の日付データをcurrentDateに格納
+    // var currentDate = new Date();
+
+    // 年・月・日・曜日を取得
+    var year = currentDate.getFullYear();
+    var month = currentDate.getMonth() + 1;
+    var date = currentDate.getDate();
+    var day = currentDate.getDay();
+    var weekday = ["日","月","火","水","木","金","土"];
+
+    // 時間を取得
+    var hour = formatTime(currentDate.getHours());
+    var minute = formatTime(currentDate.getMinutes());
+    var second = formatTime(currentDate.getSeconds());
+
+    // 0~9の数値に0を足して2桁にする関数(例: 0:0:0 -> 00:00:00)
+    function formatTime(val) {
+    return ("0" + val).slice(-2);
+    }
+
+    // 取得した日付・時間をアウトプット
+    let valueCurrentDate = `${year}年${month}月${date}日${weekday[day]}曜日 ${hour}:${minute}:${second}`;
+
+    return valueCurrentDate;
+}
