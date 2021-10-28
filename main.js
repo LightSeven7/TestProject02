@@ -362,7 +362,7 @@ function createEmployee(name, salary) {
     const result = {name, salary};
     Object.setPrototypeOf(result, employeePrototype);
     return result;
-}   
+}
 
 // プロトタイプテスト
 const TestHHH = () => {

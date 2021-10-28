@@ -61,3 +61,21 @@ https://paiza.hatenablog.com/entry/2021/07/21/130000?type=mail
 【nvm インストール手順 Windows向け】
 [https://tako-xyz.com/nvm-install-windows/]
 ------------------------------------------------------
+
+------------------------------------------------------
+【Node.js & npm をインストーラー無しで 手軽にはじめる - Cottpic】
+[https://www.cottpic.com/2019/04/use-NodeJS-without-installer.html]
+
+環境変数に以下のパスを追加(パスはNode.Jsを配置したパス)
+Pat → C:\node-v14.18.0-x64
+NODE_PATH → C:\node-v14.18.0-x64\node_modules\npm\node_modules
+            C:\node-v14.18.0-x64\node_modules\npm
+------------------------------------------------------
+
+【基礎的なToDoアプリケーションを作成しよう｜Node.jsによるWebアプリケーション作成入門】
+[https://zenn.dev/wkb/books/node-tutorial/viewer/todo_01]
+------------------------------------------------------
+
+【汚してしまったGitワークツリーをヘッドリビジョンに戻す】
+[https://lab.unicast.ne.jp/2011/06/02/%E6%B1%9A%E3%81%97%E3%81%A6%E3%81%97%E3%81%BE%E3%81%A3%E3%81%9Fgit%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%84%E3%83%AA%E3%83%BC%E3%82%92%E3%83%98%E3%83%83%E3%83%89%E3%83%AA%E3%83%93%E3%82%B8%E3%83%A7/]
+------------------------------------------------------
