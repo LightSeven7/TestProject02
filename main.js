@@ -994,3 +994,270 @@ function roundDown(num, digit) {
     console.log('切り捨て結果：' + retVal);
     return retVal;
 }
+
+function maptest () {
+
+    var aryTest = [1,2,3,4,5];
+    console.log('aryTest:' + aryTest);
+
+    aryTest.map(function (value, index, array) {
+        value = value * 2;
+        console.log('in array:' + array);
+        return;
+    });
+
+    console.log('aryTest after:' + aryTest);
+    return;
+}
+
+// 第２キーまであるソート関数
+function sort2 (array, order) {
+    if (!order || !order.match(/^(ASC|DESC)$/i)) order = 'ASC';
+    order = order.toUpperCase();
+
+    var keys = [];
+    for (var i = 2, len = arguments.length; i < len; i++) keys.push(arguments[i]);
+
+    var targets = [].concat(array);
+    targets.sort(function(a, b) {
+        for (var i = 0, len = keys.length; i < len; i++) {
+            if (typeof keys[i] === 'string') {
+                if (order === 'ASC') {
+                    if (a[keys[i]] < b[keys[i]]) return -1;
+                    if (a[keys[i]] > b[keys[i]]) return 1;
+                } else {
+                    if (a[keys[i]] > b[keys[i]]) return -1;
+                    if (a[keys[i]] < b[keys[i]]) return 1;
+                }
+            } else {
+                var localOrder = keys[i].order || 'ASC';
+                if (!localOrder.match(/^(ASC|DESC)$/i)) order = 'ASC';
+                order = order.toUpperCase();
+
+                if (localOrder === 'ASC') {
+                    if (a[keys[i].key] < b[keys[i].key]) return -1;
+                    if (a[keys[i].key] > b[keys[i].key]) return 1;
+                } else {
+                    if (a[keys[i].key] > b[keys[i].key]) return -1;
+                    if (a[keys[i].key] < b[keys[i].key]) return 1;
+                }
+            }
+        }
+        return 0;
+    });
+    return targets;
+};
+
+/* array.mapの使い方 */
+function maptest2 () {
+
+    var mainArray = [];
+    mainArray.push([1,'S','11',30,5,'AAA']);
+    mainArray.push([1,'H','11',40,6,'AAA']);
+    mainArray.push([2,'H','11',50,2,'AAA']);
+    mainArray.push([2,'S','11',60,7,'AAA']);
+    mainArray.push([3,'S','11',50,4,'AAA']);
+    mainArray.push([3,'S','11',60,7,'AAA']);
+    mainArray.push([4,'S','11',30,8,'AAA']);
+    mainArray.push([5,'H','11',10,2,'AAA']);
+    mainArray.push([6,'S','11',20,1,'AAA']);
+    mainArray.push([7,'H','11',70,5,'AAA']);
+
+    var aryTest1 = mainArray.map(function (value, index) {
+
+        // 新しく配列を作ってそれに対して変更した値をセットしないと元の配列の値を変えてしまう。
+        var cpAry = value.slice(0, value.length);
+        cpAry[3] = value[3] * value[4];
+
+        return cpAry;
+    }, );
+
+    mainArray.map(function (value, index) {
+        console.log('1st mainArray' + index + ': ' +value);
+    });
+
+    console.log('====================');
+
+    aryTest1.map(function (value, index) {
+        console.log('1st aryTest1' + index + ': ' +value);
+    });
+
+console.log('====================\n\n');
+
+    return;
+}
+
+/* array.includesの使い方 */
+function mapTest3 () {
+
+    var mainArray = [];
+    mainArray.push([1,'S','11',30,5,'AAA']);
+    mainArray.push([1,'H','11',40,6,'AAA']);
+    mainArray.push([2,'H','11',50,2,'AAA']);
+    mainArray.push([2,'S','11',60,7,'AAA']);
+    mainArray.push([3,'S','11',50,4,'AAA']);
+    mainArray.push([3,'S','11',60,7,'AAA']);
+    mainArray.push([4,'S','11',30,8,'AAA']);
+    mainArray.push([5,'H','11',10,2,'AAA']);
+    mainArray.push([6,'S','11',20,1,'AAA']);
+    mainArray.push([7,'H','11',70,5,'AAA']);
+
+    // includesは配列を対象にして検索をかける
+    var ary1 = mainArray.map(function (value, index) {
+        var aaa = value.includes('H');
+        console.log('value' + index + ': ' + value);
+        console.log('aaa' + index + ': H is ' + aaa);
+        value.push(aaa);
+        return value;
+    })
+
+    ary1.map(function (value, index){
+        console.log('変更後の配列の中 ' + index + ' ' + value);
+    });
+
+    console.log('===========================\n[[end]]\n\n');
+    return;
+}
+
+function aryTest11 () {
+
+    var mainArray = [];
+    mainArray.push([6,'S','14',20,1,'AAA']);
+    mainArray.push([2,'H','13',50,2,'AAA']);
+    mainArray.push([3,'H','12',50,4,'AAA']);
+    mainArray.push([1,'S','11',30,5,'AAA']);
+    mainArray.push([7,'H','15',70,5,'AAA']);
+    mainArray.push([2,'S','13',60,7,'AAA']);
+    mainArray.push([1,'H','12',40,6,'AAA']);
+    mainArray.push([5,'H','12',10,2,'AAA']);
+    mainArray.push([4,'S','15',30,8,'AAA']);
+    mainArray.push([3,'S','11',60,7,'AAA']);
+
+    var aaaaa = mainArray.map(function (value){
+        return value[0];
+    }).filter(function (value, index, array) {
+        return array.indexOf(value) === index;
+    }).map(function (value) {
+        return mainArray.filter(function (aryValue) {
+            return value === aryValue[0];
+        })
+        .sort().reverse();
+    });
+
+    var ddddd = [];
+    for (var i = 0; i < aaaaa.length; i++) {
+        aaaaa[i].map(function (value) {
+            ddddd.push(value);
+        })
+    }
+
+    ddddd.sort(function (a, b) {
+        return (a[0] - b[0]);
+    })
+    for(let i = 0; i < ddddd.length; i++) {
+        console.log('sort: ' + ddddd[i]);
+    }
+
+    // indexOf…配列内に同じ値があった場合、要素を返す
+    // var ary1 = mainArray.map(function (oneData) {
+    //     return oneData[2];
+    // }).filter(function (value, index, ownList) {
+    //     return ownList.indexOf(value) === index;
+    // }).sort().map(function (x,i) {
+    //     console.log(i + ' ' + x);
+    // });
+
+    // var obj1 = {
+    //     aaa: 1,
+    //     bbb: 'test1',
+    //     ccc: 'dummy1'
+    // };
+
+    // var testObj = obj1;
+    // // testObj.aaa = 2;
+    // testObj.bbb = 'zzz';
+    // testObj.ccc = 'xxx';
+    // testObj.ddd = 12;
+
+    // console.log('aaa:' + testObj.aaa);
+    // console.log('bbb:' + testObj.bbb);
+    // console.log('ccc:' + testObj.ccc);
+    // console.log('ddd:' + testObj.ddd);
+
+    console.log('===========================\n[[end]]\n\n');
+
+    return;
+}
+
+
+function aryTest12 () {
+
+    var mainArray = [];
+    mainArray.push([6,'S','14',20,1,'AAA']);
+    mainArray.push([2,'H','13',50,2,'AAA']);
+    mainArray.push([3,'H','12',50,4,'AAA']);
+    mainArray.push([1,'S','11',30,5,'AAA']);
+    mainArray.push([7,'H','15',70,5,'AAA']);
+    mainArray.push([2,'S','13',60,7,'AAA']);
+    mainArray.push([1,'H','12',40,6,'AAA']);
+    mainArray.push([5,'H','12',10,2,'AAA']);
+    mainArray.push([4,'S','15',30,8,'AAA']);
+    mainArray.push([3,'S','11',60,7,'AAA']);
+
+    var aaaaa = mainArray.map(function (value){
+        return value[0];
+    }).filter(function (value, index, array) {
+        return array.indexOf(value) === index;
+    }).map(function (value) {
+        return mainArray.filter(function (aryValue) {
+            return value === aryValue[0];
+        })
+        .sort().reverse();
+    });
+
+    var ddddd = [];
+    for (var i = 0; i < aaaaa.length; i++) {
+        aaaaa[i].map(function (value) {
+            ddddd.push(value);
+        })
+    }
+
+    ddddd.sort(function (a, b) {
+        return (a[0] - b[0]);
+    });
+
+    for(let i = 0; i < ddddd.length; i++) {
+        console.log('sort: ' + ddddd[i]);
+    }
+    console.log('===========================\n[[end]]\n\n');
+
+    return;
+}
+
+function aryTest13 () {
+
+    var mainArray = [];
+    mainArray.push([6,'S','14',20,1,'AAA']);
+    mainArray.push([2,'H','13',50,2,'AAA']);
+    mainArray.push([3,'H','12',50,4,'AAA']);
+    mainArray.push([1,'S','11',70,5,'AAA']);
+    mainArray.push([7,'H','15',70,5,'AAA']);
+    mainArray.push([2,'S','13',60,7,'AAA']);
+    mainArray.push([1,'H','12',40,6,'AAA']);
+    mainArray.push([5,'H','12',10,2,'AAA']);
+    mainArray.push([4,'S','15',30,8,'AAA']);
+    mainArray.push([3,'S','11',60,7,'AAA']);
+
+    mainArray.sort(function (a, b) {
+        return a[0] - b[0];
+    }).sort(function (a, b) {
+        return (b[3] - a[3]);
+    });
+
+    for(let i = 0; i < mainArray.length; i++) {
+        console.log('sort: ' + mainArray[i]);
+    }
+    console.log('===========================\n[[end]]\n\n');
+
+    return;
+}
