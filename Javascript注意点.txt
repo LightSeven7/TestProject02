@@ -84,3 +84,15 @@ NODE_PATH → C:\node-v14.18.0-x64\node_modules\npm\node_modules
 【すべてのウェブ開発者へ。人気GitHubリポジトリ9選 - Qiita】
 https://qiita.com/baby-degu/items/d9e530ec574683bf6f24#6-nodejs-best-practices
 ---------------------------------------------------------
+
+
+    // #Peacock設定(拡張機能)
+    "peacock.favoriteColors": [
+        {
+            "name": "Local2",
+            // "value": "#7EE5EA"
+            // "value": "#87F5C1"
+            "value": "#2C47E8"
+        }
+    ],
+---------------------------------------------------------

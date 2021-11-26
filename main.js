@@ -1261,3 +1261,16 @@ function aryTest13 () {
 
     return;
 }
+
+const aryTest14 = () => {
+    let arrayA = ['1','2','3','4','5'];
+    let val = '6';
+
+    if (arrayA.includes(val, 0)) {
+        console.log('hit!');
+    } else {
+        console.log('no hit');
+    }
+
+    return;
+}
