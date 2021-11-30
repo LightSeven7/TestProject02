@@ -96,3 +96,15 @@ https://qiita.com/baby-degu/items/d9e530ec574683bf6f24#6-nodejs-best-practices
         }
     ],
 ---------------------------------------------------------
+
+イントラ
+ID：fni
+PW：staff
+
+ID：k.kubota@fair-next-innovation.co.jp
+PW：light_seven_7677
+
+■ジョブカン勤怠管理
+会社名：fair-next-innovation
+スタッフコード：209
+パスワード：k.kubota0707
