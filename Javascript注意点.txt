@@ -59,7 +59,7 @@ https://paiza.hatenablog.com/entry/2021/07/21/130000?type=mail
 
 ------------------------------------------------------
 【nvm インストール手順 Windows向け】
-[https://tako-xyz.com/nvm-install-windows/]
+https://tako-xyz.com/nvm-install-windows/
 ------------------------------------------------------
 
 ------------------------------------------------------
