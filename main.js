@@ -43,7 +43,7 @@ if (ua.indexOf("msie") != -1){
  * [引数]   numVal: 入力値
  * [返却値] true:  数値、false: 数値以外
  */
-function isNumber (numVal) {
+function isNumber(numVal) {
     // チェック条件パターン
     var pattern = /^[-]?([1-9]\d*|0)(\.\d+)?$/;
     // 数値チェック
@@ -118,11 +118,17 @@ const PromiseTest01 = () => {
     // 関数呼び出し
     console.log("method start");
     let val_retVal;
-    a().then(result => {val_retVal = result});
+    a().then(result => {
+        val_retVal = result
+    });
 
     // resultには「b」の戻り値が入っていて、それを「c」・「d」の引数へセットしている。
     // rejectが返される場合、catchへ飛ぶ
-    b(val_retVal).then(result => {c(result)}).catch(result => {d(result)});
+    b(val_retVal).then(result => {
+        c(result)
+    }).catch(result => {
+        d(result)
+    });
 
     alert("Call To PromiseTest01");
 }
@@ -148,7 +154,7 @@ async function exec() {
 }
 
 // async・awaitを使用した非同期処理
-function PromiseTest03 (flg, next_word=``) {
+function PromiseTest03(flg, next_word = ``) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             let arg = `Success`;
@@ -168,7 +174,7 @@ async function funcA() {
         a = await PromiseTest03(true, "1st:");
         // 処理２
         b = await PromiseTest03(false, "2nd:");
-    } catch(e) {
+    } catch (e) {
         // 処理３（処理２で失敗すると呼ばれる）
         // eには処理２の結果(b)が入っている
         a += `, ${e}, ${await PromiseTest03(true, 'Re:')}`;
@@ -200,7 +206,16 @@ const TestDDD = () => {
 
     // 分割代入方法１
     let a, b, c, d, rest;
-    ({a, b, ...rest} = {a: 10, b: 20, x: 30, z: 40});
+    ({
+        a,
+        b,
+        ...rest
+    } = {
+        a: 10,
+        b: 20,
+        x: 30,
+        z: 40
+    });
 
     console.log(`a:${a}`);
     console.log(`b:${b}`);
@@ -226,19 +241,41 @@ const TestDDD = () => {
         reason: "`raise e from cause` べんりですよ"
     };
     // プロパティ名と変数名が同じであれば「プロパティ名.」を省略できる
-    const {name="AAAAAA", mind} = thinking;
+    const {
+        name = "AAAAAA", mind
+    } = thinking;
     console.log(`${name}だけど${mind}理由の一つです`);
 
-    const pat = {name: 'Pat', birthday: {day: 14, month: 3, year: 2010}};
-    const {birthday: {year: year}} = pat;
+    const pat = {
+        name: 'Pat',
+        birthday: {
+            day: 14,
+            month: 3,
+            year: 2010
+        }
+    };
+    const {
+        birthday: {
+            year: year
+        }
+    } = pat;
     console.log(`pat: ${year}`);
 }
 
 // デフォルト
 const TestEEE = () => {
-    const pat = {name: 'Pat', birthday: {day: 14, month: 3, year: 2010}};
+    const pat = {
+        name: 'Pat',
+        birthday: {
+            day: 14,
+            month: 3,
+            year: 2010
+        }
+    };
     const [first, second = 0] = [42];
-    const {nickname = 'None'} = pat;
+    const {
+        nickname = 'None'
+    } = pat;
     console.log(`first:${first}, second:${second}, nickname:${nickname}`);
 
     let zz = [] + {};
@@ -247,7 +284,7 @@ const TestEEE = () => {
 
 // 辞書・ハッシュ使用方法
 const TestMap = () => {
-    const map = new Map ([
+    const map = new Map([
         ["埼玉県", 12],
         ["東京都", 13],
         ["神奈川県", 14]
@@ -277,7 +314,9 @@ const TestObjectCopy = () => {
     Object.assign(destObj, srcObj);
 
     // パターン２
-    const destObj2 = {...srcObj};
+    const destObj2 = {
+        ...srcObj
+    };
     console.log(`destObj2.id:${destObj2.id}`);
     console.log(`destObj2.name:${destObj2.name}`);
 }
@@ -291,14 +330,22 @@ const TestOutputLog = () => {
     }
 
     // Object形式のデータをJSON形式のデータに変換
-    console.log(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
-    alert(JSON.stringify({'id': aaa.id, 'address': aaa.address,}));
+    console.log(JSON.stringify({
+        'id': aaa.id,
+        'address': aaa.address,
+    }));
+    alert(JSON.stringify({
+        'id': aaa.id,
+        'address': aaa.address,
+    }));
 }
 
 // 無名関数(関数リテラル)
 const TestFFF = () => {
     // !mapの中で実行しているのが無名関数
-    let results = [0, 1, 2, 3, 4].map(function (x) { return 100 * x});
+    let results = [0, 1, 2, 3, 4].map(function (x) {
+        return 100 * x
+    });
     for (const vv of results) console.log(`Value:${vv}`);
 }
 
@@ -310,7 +357,7 @@ const TestGGG = () => {
     objArray.forEach((ele, index) => console.log(`index:${index}, ele:${ele}`));
 
     // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
-    const array1 = [3,1,4,1,5,9,2];
+    const array1 = [3, 1, 4, 1, 5, 9, 2];
     const array2 = array1.map(function (item, index, ary) {
         return item * item;
     });
@@ -323,7 +370,7 @@ const TestGGG = () => {
 
     // reduce(配列要素に対してインデックスが小さい方から大きい方へ
     // 順（左から右の順）に指定された関数を実行)
-    var arr = [3,1,4,1,5,9,2];
+    var arr = [3, 1, 4, 1, 5, 9, 2];
     var result = arr.reduce(function (previousItem, currentItem, index, array) {
         var message = '';
         message += '[' + array.toString() + '] ';
@@ -352,14 +399,17 @@ function createEmployeeBase(name, salary) {
 
 // プロトタイプ(共有メソッド)
 const employeePrototype = {
-    raiseSalary: function(percent) {
+    raiseSalary: function (percent) {
         this.salary *= 1 + percent / 100;
     }
 }
 
 // プロトタイプ設定
 function createEmployee(name, salary) {
-    const result = {name, salary};
+    const result = {
+        name,
+        salary
+    };
     Object.setPrototypeOf(result, employeePrototype);
     return result;
 }
@@ -385,7 +435,7 @@ function memberInfo(name, skill) {
 function TestIII() {
 
     const xxx = new memberInfo('kubota', 60);
-    memberInfo.prototype.raiseSkill = function(percent) {
+    memberInfo.prototype.raiseSkill = function (percent) {
         this.skill *= 1 + percent / 100;
     }
     memberInfo.prototype.fullPowerUp = function (point) {
@@ -397,7 +447,7 @@ function TestIII() {
     console.log(xxx.name + "is skill point " + xxx.skill);
 
     // 無名関数
-    var x = function(y) {
+    var x = function (y) {
         return y * y;
     };
     console.log("x test:" + String(x(7)));
@@ -412,19 +462,20 @@ function TestIII() {
 
 // クロージャ―テスト１
 function TestJJJ() {
-    var makeCounter = function() {
+    var makeCounter = function () {
         var privateCounter = 0;
+
         function changeBy(val) {
             privateCounter += val;
         }
         return {
-            increment: function() {
+            increment: function () {
                 changeBy(1);
             },
-            decrement: function() {
+            decrement: function () {
                 changeBy(-1);
             },
-            value: function() {
+            value: function () {
                 return privateCounter;
             }
         }
@@ -433,7 +484,7 @@ function TestJJJ() {
     var counter1 = makeCounter();
     var counter2 = makeCounter();
 
-    alert(counter1.value());  // 0.
+    alert(counter1.value()); // 0.
 
     counter1.increment();
     counter1.increment();
@@ -447,32 +498,33 @@ function TestJJJ() {
 // クロージャ－テスト２
 function TestKKK() {
 
-    var counter = (function() {
+    var counter = (function () {
         var privateCounter = 0;
+
         function changeBy(val) {
             privateCounter += val;
         }
         return {
-            increment: function() {
+            increment: function () {
                 changeBy(1);
             },
-            decrement: function() {
+            decrement: function () {
                 changeBy(-1);
             },
-            value: function() {
+            value: function () {
                 return privateCounter;
             }
         };
     })();
 
-    console.log(counter.value());  // 0.
+    console.log(counter.value()); // 0.
 
     counter.increment();
     counter.increment();
-    console.log(counter.value());  // 2.
+    console.log(counter.value()); // 2.
 
     counter.decrement();
-    console.log(counter.value());  // 1.
+    console.log(counter.value()); // 1.
 }
 
 /* クロージャ―テスト */
@@ -483,16 +535,24 @@ function TestMMM() {
     }
 
     function makeHelpCallback(help) {
-        return function() {
+        return function () {
             showHelp(help);
         };
     }
 
     function setupHelp() {
-        var helpText = [
-            {'id': 'email', 'help': 'メールアドレス'},
-            {'id': 'name', 'help': '氏名'},
-            {'id': 'age', 'help': '年齢 (17歳以上)'}
+        var helpText = [{
+                'id': 'email',
+                'help': 'メールアドレス'
+            },
+            {
+                'id': 'name',
+                'help': '氏名'
+            },
+            {
+                'id': 'age',
+                'help': '年齢 (17歳以上)'
+            }
         ];
 
         for (var i = 0; i < helpText.length; i++) {
@@ -510,7 +570,7 @@ function TestArrayMethods() {
     /* forEach */
     // 要素に値とインデックスや配列をコールバック関数の引数として受け取って処理する場合
     var objArray = ["aaa", "bbb", "ccc", "ddd", "eee"];
-    objArray.forEach(function(element, index, array){
+    objArray.forEach(function (element, index, array) {
         console.log('Index:' + index);
         console.log('Element:' + element);
         console.log('Array:' + array);
@@ -519,7 +579,7 @@ function TestArrayMethods() {
     /* map */
     // map(与えられた関数を配列のすべての要素に対して実行し、その戻り値から新しい配列を作成)
     // ※この辺りの関数は無名関数にしている。別途、関数を定義して呼び出すことも可能
-    const array1 = [3,1,4,1,5,9,2];
+    const array1 = [3, 1, 4, 1, 5, 9, 2];
     const array22 = array1.map(function (item, index, ary) {
         console.log("index:" + index + " " + item * item);
         return item * item;
@@ -572,7 +632,10 @@ function TestArrayMethods() {
 
     /* flat */
     // 多次元の配列を平坦化する
-    var arr3 = [[1,2],[3,4]];
+    var arr3 = [
+        [1, 2],
+        [3, 4]
+    ];
     var arr4 = arr3.flat();
     console.log('arr3 を平坦化 ' + arr4);
 
@@ -591,26 +654,48 @@ function TestArrayMethods() {
 
     /* assign */
     // 複数オブジェクトをallObjへコピーする
-    var objA = {a:'Ant'};
-    var objB = {b:'bee'};
-    var objC = {c:'cicada'};
+    var objA = {
+        a: 'Ant'
+    };
+    var objB = {
+        b: 'bee'
+    };
+    var objC = {
+        c: 'cicada'
+    };
     var allObj = Object.assign(objA, objB, objC);
     console.log('allObj a:' + allObj.a);
 
     // 既存オブジェクトへ追加する場合
-    var objD = {d:'lion'};
+    var objD = {
+        d: 'lion'
+    };
     allObj = Object.assign({}, allObj, objD);
     console.log('allObj a:' + allObj.a + ' d:' + allObj.d);
 
     /* オブジェクト内に配列格納処理 */
-    var arr7 = [1,2,3,4];
-    var arr8 = [5,6,7,8];
-    var arr9 = [9,10,11,12];
+    var arr7 = [1, 2, 3, 4];
+    var arr8 = [5, 6, 7, 8];
+    var arr9 = [9, 10, 11, 12];
 
-    var helpText = [
-        {'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7},
-        {'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8},
-        {'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': arr9},
+    var helpText = [{
+            'id': 'email',
+            'help': 'メールアドレス',
+            'help2': '年齢',
+            'a_data': arr7
+        },
+        {
+            'id': 'name',
+            'help': '氏名',
+            'help2': '名字',
+            'a_data': arr8
+        },
+        {
+            'id': 'age',
+            'help': '年齢 (17歳以上)',
+            'help2': '大人',
+            'a_data': arr9
+        },
     ];
     console.log('helpText Length:' + helpText.length);
 
@@ -633,19 +718,36 @@ function TestArrayMethods() {
     // expected output: Array [1, 100000, 21, 30, 4]
 
     // 二次元配列をソート
-    arrayTaxationList.sort(function(a, b) { return(a[0] - b[0]); });
+    arrayTaxationList.sort(function (a, b) {
+        return (a[0] - b[0]);
+    });
 
     // オブジェクトを配列に格納(569行目とやっていることは一緒)
     var arr10 = [];
-    arr10.push({'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': arr7});
-    arr10.push({'id': 'name', 'help': '氏名', 'help2': '名字', 'a_data': arr8});
-    arr10.push({'id': 'age', 'help': '年齢 (17歳以上)', 'help2': '大人', 'a_data': arr9});
+    arr10.push({
+        'id': 'email',
+        'help': 'メールアドレス',
+        'help2': '年齢',
+        'a_data': arr7
+    });
+    arr10.push({
+        'id': 'name',
+        'help': '氏名',
+        'help2': '名字',
+        'a_data': arr8
+    });
+    arr10.push({
+        'id': 'age',
+        'help': '年齢 (17歳以上)',
+        'help2': '大人',
+        'a_data': arr9
+    });
 
     // 配列の各要素(オブジェクト)をchgData関数で実行する
     var arr11 = arr10.map(chgData);
     arr11.map(function (value, index) {
-        console.log('arr11 ' + Number(index + 1) + ': ' + value.id + ' '
-                    + value.help + ' ' + value.help2 + ' [' + value.a_data + ']');
+        console.log('arr11 ' + Number(index + 1) + ': ' + value.id + ' ' +
+            value.help + ' ' + value.help2 + ' [' + value.a_data + ']');
     });
 
     console.log('arr11 1:' + arr11[0].id);
@@ -666,22 +768,30 @@ function TestArrayMethods() {
 }
 
 // 引数としてオブジェクトデータを受け取り、編集後に一つのオブジェクトにまとめて返す
-function chgData (arrObj) {
+function chgData(arrObj) {
     var retObj = {};
-    retObj = Object.assign({} ,{'id': 'user_' + arrObj.id});
-    retObj = Object.assign({}, retObj, {'help': 'ユーザー' + arrObj.help});
-    retObj = Object.assign({}, retObj, {'help2': 'ユーザー' + arrObj.help2});
+    retObj = Object.assign({}, {
+        'id': 'user_' + arrObj.id
+    });
+    retObj = Object.assign({}, retObj, {
+        'help': 'ユーザー' + arrObj.help
+    });
+    retObj = Object.assign({}, retObj, {
+        'help2': 'ユーザー' + arrObj.help2
+    });
 
     var tmpArr = [];
     for (var val of arrObj.a_data) tmpArr.push(val * 2);
-    retObj = Object.assign({}, retObj, {'a_data': tmpArr});
+    retObj = Object.assign({}, retObj, {
+        'a_data': tmpArr
+    });
 
-    console.log('retObj:' + retObj.id + ' ' + retObj.help + ' '
-                + retObj.help2 + ' ' + retObj.a_data);
+    console.log('retObj:' + retObj.id + ' ' + retObj.help + ' ' +
+        retObj.help2 + ' ' + retObj.a_data);
     return retObj;
 }
 
-function ChgObjData (objects) {
+function ChgObjData(objects) {
 
     if (!objects || objects.length === 0) console.log('objects not exsist');
 
@@ -759,18 +869,23 @@ const TestCall = () => {
     console.log('[Case2] 無名関数を作成して call を使用して配列内の各オブジェクトに対して呼び出し');
 
     // 無名関数を作成して call を使用して配列内の各オブジェクトに対して呼び出し
-    const animals = [
-        { species: 'Lion', name: 'King' },
-        { species: 'Whale', name: 'Fail' }
+    const animals = [{
+            species: 'Lion',
+            name: 'King'
+        },
+        {
+            species: 'Whale',
+            name: 'Fail'
+        }
     ];
 
     for (let i = 0; i < animals.length; i++) {
-        (function(i) {
-        this.print = function() {
-            console.log('#' + i + ' ' + this.species
-                        + ': ' + this.name);
-        }
-        this.print();
+        (function (i) {
+            this.print = function () {
+                console.log('#' + i + ' ' + this.species +
+                    ': ' + this.name);
+            }
+            this.print();
         }).call(animals[i], i);
     }
     console.log('===============');
@@ -792,7 +907,7 @@ const TestBind = () => {
 
     const addArguments = (arg1, arg2) => arg1 + arg2;
 
-    const list1 = list(1, 2, 3);        // [1, 2, 3]
+    const list1 = list(1, 2, 3); // [1, 2, 3]
     console.log('list1:' + list1);
 
     const result1 = addArguments(1, 2); // 3
@@ -805,13 +920,13 @@ const TestBind = () => {
     const addThirtySeven = addArguments.bind(null, 37);
 
     const list2 = leadingThirtysevenList();
-    console.log('list2:' + list2);      // [37]
+    console.log('list2:' + list2); // [37]
 
     const list3 = leadingThirtysevenList(1, 2, 3);
-    console.log('list3:' + list3);      // [37, 1, 2, 3]
+    console.log('list3:' + list3); // [37, 1, 2, 3]
 
     const result2 = addThirtySeven(5);
-    console.log('result2:' + result2 + ' (37 + 5 = 42)');   // 37 + 5 = 42
+    console.log('result2:' + result2 + ' (37 + 5 = 42)'); // 37 + 5 = 42
 
     const result3 = addThirtySeven(5, 10);
     console.log('result3:' + result3 + ' (37 + 5 = 42 the second argument is ignored)');
@@ -842,11 +957,11 @@ const TestBind = () => {
     }
 
     // 1 秒遅延させてから bloom を宣言する
-    LateBloomer.prototype.bloom = function() {
+    LateBloomer.prototype.bloom = function () {
         window.setTimeout(this.declare.bind(this), 1000);
     };
 
-    LateBloomer.prototype.declare = function() {
+    LateBloomer.prototype.declare = function () {
         console.log(`I am a beautiful flower with ${this.petalCount} petals!`);
     };
 
@@ -858,10 +973,10 @@ const TestBind = () => {
     return;
 }
 
-function TestSample () {
+function TestSample() {
 
     var sum = 0;
-    var array_num = [1,2,3,4,5,6,7,8,9,10];
+    var array_num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     // ES5までの書き方
     // array_num.map(function (value) {
@@ -873,7 +988,8 @@ function TestSample () {
 
     return alert('SUM:' + sum);
 }
-function TestSample2 () {
+
+function TestSample2() {
 
     var val1 = 1;
     var val2 = 2;
@@ -887,7 +1003,7 @@ function TestSample2 () {
     return;
 }
 
-function TestSample2 () {
+function TestSample2() {
 
     // var helpText = [
     //     {'id': 'email', 'help': 'メールアドレス', 'help2': '年齢', 'a_data': 100},
@@ -901,8 +1017,12 @@ function TestSample2 () {
     // retObj = Object.assign({}, retObj, {'help2': 'ユーザー' + arrObj.help2});
 
     var retObj = {};
-    retObj = Object.assign({} ,{'id': '111'});
-    retObj = Object.assign({}, retObj, {'id': '222'});
+    retObj = Object.assign({}, {
+        'id': '111'
+    });
+    retObj = Object.assign({}, retObj, {
+        'id': '222'
+    });
     // retObj = Object.assign(retObj, {'id': '333'});
     // retObj = Object.assign(retObj, {'id': '444'});
 
@@ -921,7 +1041,7 @@ function TestSample2 () {
 function LoadProc() {
     var curDate = new Date();
     var Year = curDate.getFullYear();
-    var Month = curDate.getMonth()+1;
+    var Month = curDate.getMonth() + 1;
     var Date = curDate.getDate();
     var Hour = curDate.getHours();
     var Min = curDate.getMinutes();
@@ -937,7 +1057,7 @@ function LoadProc() {
  */
 function round(num, digit) {
 
-    var digitVal = Math.pow( 10, digit );
+    var digitVal = Math.pow(10, digit);
     var retVal;
 
     // 誤差を生じにくくさせる
@@ -959,8 +1079,8 @@ function round(num, digit) {
 function roundUp(num, digit) {
 
     // Excel に仕様を合わせるための符号入れ替え用変数
-    var sign =  num < 0 ? -1 : 1;
-    var digitVal = Math.pow( 10, digit );
+    var sign = num < 0 ? -1 : 1;
+    var digitVal = Math.pow(10, digit);
     var retVal;
 
     // 誤差を生じにくくさせる
@@ -986,18 +1106,18 @@ function roundDown(num, digit) {
 
     // 誤差を生じにくくさせる
     if (digitVal < 1) {
-        retVal = Math.floor( num * digitVal ) * Math.pow( 10, -1 * digit );
+        retVal = Math.floor(num * digitVal) * Math.pow(10, -1 * digit);
     } else {
-        retVal = Math.floor( num * digitVal ) / digitVal;
+        retVal = Math.floor(num * digitVal) / digitVal;
     }
 
     console.log('切り捨て結果：' + retVal);
     return retVal;
 }
 
-function maptest () {
+function maptest() {
 
-    var aryTest = [1,2,3,4,5];
+    var aryTest = [1, 2, 3, 4, 5];
     console.log('aryTest:' + aryTest);
 
     aryTest.map(function (value, index, array) {
@@ -1011,7 +1131,7 @@ function maptest () {
 }
 
 // 第２キーまであるソート関数
-function sort2 (array, order) {
+function sort2(array, order) {
     if (!order || !order.match(/^(ASC|DESC)$/i)) order = 'ASC';
     order = order.toUpperCase();
 
@@ -1019,7 +1139,7 @@ function sort2 (array, order) {
     for (var i = 2, len = arguments.length; i < len; i++) keys.push(arguments[i]);
 
     var targets = [].concat(array);
-    targets.sort(function(a, b) {
+    targets.sort(function (a, b) {
         for (var i = 0, len = keys.length; i < len; i++) {
             if (typeof keys[i] === 'string') {
                 if (order === 'ASC') {
@@ -1049,19 +1169,19 @@ function sort2 (array, order) {
 };
 
 /* array.mapの使い方 */
-function maptest2 () {
+function maptest2() {
 
     var mainArray = [];
-    mainArray.push([1,'S','11',30,5,'AAA']);
-    mainArray.push([1,'H','11',40,6,'AAA']);
-    mainArray.push([2,'H','11',50,2,'AAA']);
-    mainArray.push([2,'S','11',60,7,'AAA']);
-    mainArray.push([3,'S','11',50,4,'AAA']);
-    mainArray.push([3,'S','11',60,7,'AAA']);
-    mainArray.push([4,'S','11',30,8,'AAA']);
-    mainArray.push([5,'H','11',10,2,'AAA']);
-    mainArray.push([6,'S','11',20,1,'AAA']);
-    mainArray.push([7,'H','11',70,5,'AAA']);
+    mainArray.push([1, 'S', '11', 30, 5, 'AAA']);
+    mainArray.push([1, 'H', '11', 40, 6, 'AAA']);
+    mainArray.push([2, 'H', '11', 50, 2, 'AAA']);
+    mainArray.push([2, 'S', '11', 60, 7, 'AAA']);
+    mainArray.push([3, 'S', '11', 50, 4, 'AAA']);
+    mainArray.push([3, 'S', '11', 60, 7, 'AAA']);
+    mainArray.push([4, 'S', '11', 30, 8, 'AAA']);
+    mainArray.push([5, 'H', '11', 10, 2, 'AAA']);
+    mainArray.push([6, 'S', '11', 20, 1, 'AAA']);
+    mainArray.push([7, 'H', '11', 70, 5, 'AAA']);
 
     var aryTest1 = mainArray.map(function (value, index) {
 
@@ -1073,34 +1193,34 @@ function maptest2 () {
     }, );
 
     mainArray.map(function (value, index) {
-        console.log('1st mainArray' + index + ': ' +value);
+        console.log('1st mainArray' + index + ': ' + value);
     });
 
     console.log('====================');
 
     aryTest1.map(function (value, index) {
-        console.log('1st aryTest1' + index + ': ' +value);
+        console.log('1st aryTest1' + index + ': ' + value);
     });
 
-console.log('====================\n\n');
+    console.log('====================\n\n');
 
     return;
 }
 
 /* array.includesの使い方 */
-function mapTest3 () {
+function mapTest3() {
 
     var mainArray = [];
-    mainArray.push([1,'S','11',30,5,'AAA']);
-    mainArray.push([1,'H','11',40,6,'AAA']);
-    mainArray.push([2,'H','11',50,2,'AAA']);
-    mainArray.push([2,'S','11',60,7,'AAA']);
-    mainArray.push([3,'S','11',50,4,'AAA']);
-    mainArray.push([3,'S','11',60,7,'AAA']);
-    mainArray.push([4,'S','11',30,8,'AAA']);
-    mainArray.push([5,'H','11',10,2,'AAA']);
-    mainArray.push([6,'S','11',20,1,'AAA']);
-    mainArray.push([7,'H','11',70,5,'AAA']);
+    mainArray.push([1, 'S', '11', 30, 5, 'AAA']);
+    mainArray.push([1, 'H', '11', 40, 6, 'AAA']);
+    mainArray.push([2, 'H', '11', 50, 2, 'AAA']);
+    mainArray.push([2, 'S', '11', 60, 7, 'AAA']);
+    mainArray.push([3, 'S', '11', 50, 4, 'AAA']);
+    mainArray.push([3, 'S', '11', 60, 7, 'AAA']);
+    mainArray.push([4, 'S', '11', 30, 8, 'AAA']);
+    mainArray.push([5, 'H', '11', 10, 2, 'AAA']);
+    mainArray.push([6, 'S', '11', 20, 1, 'AAA']);
+    mainArray.push([7, 'H', '11', 70, 5, 'AAA']);
 
     // includesは配列を対象にして検索をかける
     var ary1 = mainArray.map(function (value, index) {
@@ -1111,7 +1231,7 @@ function mapTest3 () {
         return value;
     })
 
-    ary1.map(function (value, index){
+    ary1.map(function (value, index) {
         console.log('変更後の配列の中 ' + index + ' ' + value);
     });
 
@@ -1119,29 +1239,29 @@ function mapTest3 () {
     return;
 }
 
-function aryTest11 () {
+function aryTest11() {
 
     var mainArray = [];
-    mainArray.push([6,'S','14',20,1,'AAA']);
-    mainArray.push([2,'H','13',50,2,'AAA']);
-    mainArray.push([3,'H','12',50,4,'AAA']);
-    mainArray.push([1,'S','11',30,5,'AAA']);
-    mainArray.push([7,'H','15',70,5,'AAA']);
-    mainArray.push([2,'S','13',60,7,'AAA']);
-    mainArray.push([1,'H','12',40,6,'AAA']);
-    mainArray.push([5,'H','12',10,2,'AAA']);
-    mainArray.push([4,'S','15',30,8,'AAA']);
-    mainArray.push([3,'S','11',60,7,'AAA']);
+    mainArray.push([6, 'S', '14', 20, 1, 'AAA']);
+    mainArray.push([2, 'H', '13', 50, 2, 'AAA']);
+    mainArray.push([3, 'H', '12', 50, 4, 'AAA']);
+    mainArray.push([1, 'S', '11', 30, 5, 'AAA']);
+    mainArray.push([7, 'H', '15', 70, 5, 'AAA']);
+    mainArray.push([2, 'S', '13', 60, 7, 'AAA']);
+    mainArray.push([1, 'H', '12', 40, 6, 'AAA']);
+    mainArray.push([5, 'H', '12', 10, 2, 'AAA']);
+    mainArray.push([4, 'S', '15', 30, 8, 'AAA']);
+    mainArray.push([3, 'S', '11', 60, 7, 'AAA']);
 
-    var aaaaa = mainArray.map(function (value){
+    var aaaaa = mainArray.map(function (value) {
         return value[0];
     }).filter(function (value, index, array) {
         return array.indexOf(value) === index;
     }).map(function (value) {
         return mainArray.filter(function (aryValue) {
-            return value === aryValue[0];
-        })
-        .sort().reverse();
+                return value === aryValue[0];
+            })
+            .sort().reverse();
     });
 
     var ddddd = [];
@@ -1154,7 +1274,7 @@ function aryTest11 () {
     ddddd.sort(function (a, b) {
         return (a[0] - b[0]);
     })
-    for(let i = 0; i < ddddd.length; i++) {
+    for (let i = 0; i < ddddd.length; i++) {
         console.log('sort: ' + ddddd[i]);
     }
 
@@ -1190,29 +1310,29 @@ function aryTest11 () {
 }
 
 
-function aryTest12 () {
+function aryTest12() {
 
     var mainArray = [];
-    mainArray.push([6,'S','14',20,1,'AAA']);
-    mainArray.push([2,'H','13',50,2,'AAA']);
-    mainArray.push([3,'H','12',50,4,'AAA']);
-    mainArray.push([1,'S','11',30,5,'AAA']);
-    mainArray.push([7,'H','15',70,5,'AAA']);
-    mainArray.push([2,'S','13',60,7,'AAA']);
-    mainArray.push([1,'H','12',40,6,'AAA']);
-    mainArray.push([5,'H','12',10,2,'AAA']);
-    mainArray.push([4,'S','15',30,8,'AAA']);
-    mainArray.push([3,'S','11',60,7,'AAA']);
+    mainArray.push([6, 'S', '14', 20, 1, 'AAA']);
+    mainArray.push([2, 'H', '13', 50, 2, 'AAA']);
+    mainArray.push([3, 'H', '12', 50, 4, 'AAA']);
+    mainArray.push([1, 'S', '11', 30, 5, 'AAA']);
+    mainArray.push([7, 'H', '15', 70, 5, 'AAA']);
+    mainArray.push([2, 'S', '13', 60, 7, 'AAA']);
+    mainArray.push([1, 'H', '12', 40, 6, 'AAA']);
+    mainArray.push([5, 'H', '12', 10, 2, 'AAA']);
+    mainArray.push([4, 'S', '15', 30, 8, 'AAA']);
+    mainArray.push([3, 'S', '11', 60, 7, 'AAA']);
 
-    var aaaaa = mainArray.map(function (value){
+    var aaaaa = mainArray.map(function (value) {
         return value[0];
     }).filter(function (value, index, array) {
         return array.indexOf(value) === index;
     }).map(function (value) {
         return mainArray.filter(function (aryValue) {
-            return value === aryValue[0];
-        })
-        .sort().reverse();
+                return value === aryValue[0];
+            })
+            .sort().reverse();
     });
 
     var ddddd = [];
@@ -1226,7 +1346,7 @@ function aryTest12 () {
         return (a[0] - b[0]);
     });
 
-    for(let i = 0; i < ddddd.length; i++) {
+    for (let i = 0; i < ddddd.length; i++) {
         console.log('sort: ' + ddddd[i]);
     }
     console.log('===========================\n[[end]]\n\n');
@@ -1234,19 +1354,19 @@ function aryTest12 () {
     return;
 }
 
-function aryTest13 () {
+function aryTest13() {
 
     var mainArray = [];
-    mainArray.push([6,'S','14',20,1,'AAA']);
-    mainArray.push([2,'H','13',50,2,'AAA']);
-    mainArray.push([3,'H','12',50,4,'AAA']);
-    mainArray.push([1,'S','11',70,5,'AAA']);
-    mainArray.push([7,'H','15',70,5,'AAA']);
-    mainArray.push([2,'S','13',60,7,'AAA']);
-    mainArray.push([1,'H','12',40,6,'AAA']);
-    mainArray.push([5,'H','12',10,2,'AAA']);
-    mainArray.push([4,'S','15',30,8,'AAA']);
-    mainArray.push([3,'S','11',60,7,'AAA']);
+    mainArray.push([6, 'S', '14', 20, 1, 'AAA']);
+    mainArray.push([2, 'H', '13', 50, 2, 'AAA']);
+    mainArray.push([3, 'H', '12', 50, 4, 'AAA']);
+    mainArray.push([1, 'S', '11', 70, 5, 'AAA']);
+    mainArray.push([7, 'H', '15', 70, 5, 'AAA']);
+    mainArray.push([2, 'S', '13', 60, 7, 'AAA']);
+    mainArray.push([1, 'H', '12', 40, 6, 'AAA']);
+    mainArray.push([5, 'H', '12', 10, 2, 'AAA']);
+    mainArray.push([4, 'S', '15', 30, 8, 'AAA']);
+    mainArray.push([3, 'S', '11', 60, 7, 'AAA']);
 
     mainArray.sort(function (a, b) {
         return a[0] - b[0];
@@ -1254,7 +1374,7 @@ function aryTest13 () {
         return (b[3] - a[3]);
     });
 
-    for(let i = 0; i < mainArray.length; i++) {
+    for (let i = 0; i < mainArray.length; i++) {
         console.log('sort: ' + mainArray[i]);
     }
     console.log('===========================\n[[end]]\n\n');
@@ -1263,7 +1383,7 @@ function aryTest13 () {
 }
 
 const aryTest14 = () => {
-    let arrayA = ['1','2','3','4','5'];
+    let arrayA = ['1', '2', '3', '4', '5'];
     let val = '6';
 
     if (arrayA.includes(val, 0)) {
