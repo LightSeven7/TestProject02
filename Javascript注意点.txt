@@ -114,3 +114,7 @@ https://qiita.com/baby-degu/items/d9e530ec574683bf6f24#6-nodejs-best-practices
 【Julia言語で入門するプログラミング(その1) - SEむううみんのプログラミングパラダイス】
 [https://muuumin.net/julia-intro-prog-01/]
 ------------------------------------------------------
+
+JavaScript: Promiseやasync/awaitのメモ
+https://zenn.dev/kyome/articles/d9348df05ad778
+------------------------------------

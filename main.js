@@ -1384,7 +1384,7 @@ function aryTest13() {
 
 const aryTest14 = () => {
     let arrayA = ['1', '2', '3', '4', '5'];
-    let val = '6';
+    let val = '3';
 
     if (arrayA.includes(val, 0)) {
         console.log('hit!');
@@ -1394,3 +1394,12 @@ const aryTest14 = () => {
 
     return;
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.getElementById('clickEvent').addEventListener('click', function() {
+        alert('on clickEvent');
+    });
+
+})
