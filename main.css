@@ -57,3 +57,11 @@
         width: 450px;
         padding-left: 5px;
     }
+
+    .tdstyle1 {
+        padding: 5px;
+        border: 1px solid;
+        text-align: center;
+        width: 65px;
+        font-weight: bold;
+    }
